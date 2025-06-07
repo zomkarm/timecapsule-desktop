@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Setup User - TimeCapsule</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; }
+  input, button { padding: 8px; margin: 5px 0; width: 100%; }
+  button { cursor: pointer; }
+  .error { color: red; }
+</style>
+</head>
+<body>
+  <h2>Welcome to TimeCapsule Setup</h2>
+  <p>Create your username and password</p>
+  <input id="username" type="text" placeholder="Username" />
+  <input id="password" type="password" placeholder="Password" />
+  <input id="passwordConfirm" type="password" placeholder="Confirm Password" />
+  <button id="setupBtn">Setup Account</button>
+  <p id="message" class="error"></p>
+
+  <script>
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const passwordConfirmInput = document.getElementById('passwordConfirm');
+    const setupBtn = document.getElementById('setupBtn');
+    const message = document.getElementById('message');
+
+    setupBtn.addEventListener('click', async () => {
+      message.textContent = '';
+
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value;
+      const passwordConfirm = passwordConfirmInput.value;
+
+      if (!username || !password) {
+        message.textContent = 'Username and password are required';
+        return;
+      }
+
+      if (password !== passwordConfirm) {
+        message.textContent = 'Passwords do not match';
+        return;
+      }
+
+      try {
+        const response = await window.api.setupUser({ username, password });
+        if (response.success) {
+          message.style.color = 'green';
+          message.textContent = 'Setup complete! Restart the app to login.';
+          setupBtn.disabled = true;
+        }
+      } catch (err) {
+        message.textContent = 'Error during setup. Please try again.';
+      }
+    });
+  </script>
+</body>
+</html>

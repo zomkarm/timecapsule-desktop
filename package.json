@@ -1,0 +1,24 @@
+{
+  "name": "timecapsule-desktop-app",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "postinstall": "electron-rebuild",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "better-sqlite3": "^11.10.0",
+    "electron": "^36.4.0",
+    "electron-store": "^8.2.0"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^3.2.9",
+    "electron-reload": "^2.0.0-alpha.1"
+  }
+}

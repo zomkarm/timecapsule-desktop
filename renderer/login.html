@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login - TimeCapsule</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px;display: flex;justify-content: center; }
+  input, button { padding: 8px; margin: 5px 0; width: 100%; }
+  button { cursor: pointer; }
+  .error { color: red; }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Login to TimeCapsule</h2>
+    <input id="username" type="text" placeholder="Username" />
+    <input id="password" type="password" placeholder="Password" />
+    <button id="loginBtn">Login</button>
+    <p id="message" class="error"></p>
+</div>
+<script>
+  const usernameInput = document.getElementById('username');
+  const passwordInput = document.getElementById('password');
+  const loginBtn = document.getElementById('loginBtn');
+  const message = document.getElementById('message');
+
+  loginBtn.addEventListener('click', async () => {
+    message.textContent = '';
+
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value;
+
+    if (!username || !password) {
+      message.textContent = 'Please enter username and password';
+      return;
+    }
+
+    try {
+      const response = await window.api.loginUser({ username, password });
+
+      if (response.success) {
+        // Redirect to dashboard
+        window.location = 'dashboard.html';
+      } else {
+        message.textContent = response.message || 'Login failed';
+      }
+    } catch (err) {
+      message.textContent = 'Error during login. Try again.';
+    }
+  });
+</script>
+</body>
+</html>

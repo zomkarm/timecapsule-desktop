@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Write to Diary - TimeCapsule</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <style>
+    .controls {
+      margin-bottom: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .button-group {
+      margin-top: 15px;
+    }
+    .button-group button {
+      margin-right: 10px;
+      padding: 10px 15px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>TimeCapsule</h2>
+    <a href="dashboard.html">🏠 Dashboard</a>
+    <a href="diary.html">📖 Write to Diary</a>
+    <a href="settings.html">⚙️ Settings</a>
+  </div>
+
+  <div class="main-content">
+    <h2>📝 Write to Diary</h2>
+
+    <div class="controls">
+      <label for="entry-date">Select Date:</label>
+      <input type="date" id="entry-date" />
+      <button id="load-entry">📂 Load Entry</button>
+      <button id="create-today">🆕 Create Today’s Entry</button>
+    </div>
+
+    <textarea id="diary-text" placeholder="Your diary entry will appear here..."></textarea>
+
+    <div class="button-group">
+      <button id="save-entry">💾 Save Entry</button>
+      <span id="status-msg"></span>
+    </div>
+  </div>
+
+  <script src="scripts/diary.js"></script>
+</body>
+</html>
